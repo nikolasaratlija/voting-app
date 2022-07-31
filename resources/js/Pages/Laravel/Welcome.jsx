@@ -123,7 +123,7 @@ export default function Welcome(props) {
 
                                     <div className="ml-4 text-lg leading-7 font-semibold">
                                         <a
-                                            href="https://laravel-news.com/"
+                                            href="@/Pages/Laravel/Welcome"
                                             className="underline text-gray-900 dark:text-white"
                                         >
                                             Laravel News
