@@ -1,7 +1,12 @@
 import React from 'react';
+import AppLayout from "@/Layouts/AppLayout";
 
-export default function Index() {
+export default function Index(props) {
     return (
-        <h1>Hello World</h1>
+        <AppLayout
+            auth={props.auth}
+        >
+            <h1>Hello World!</h1>
+        </AppLayout>
     )
 }
