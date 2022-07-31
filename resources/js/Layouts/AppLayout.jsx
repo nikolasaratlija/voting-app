@@ -37,7 +37,7 @@ export default function AppLayout({auth, children}) {
                 </div>
             </header>
 
-            <div className="container mx-auto">
+            <div className="bg-gray-background py-10">
                 {children}
             </div>
         </>
