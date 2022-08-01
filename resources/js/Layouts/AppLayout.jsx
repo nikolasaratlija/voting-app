@@ -37,23 +37,44 @@ export default function AppLayout({auth, children}) {
 
             <div className="bg-gray-background py-10">
                 <div className={"container max-w-7xl mx-auto flex"}>
-                    <div className={"w-1/4 mr-10"}>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus animi autem, commodi
-                        consequatur eaque facere fuga fugit illo non pariatur possimus, quam quos rem, reprehenderit
-                        similique sit tenetur vero voluptatum? Animi aspernatur at consequatur consequuntur, cumque
-                        distinctio eligendi ex facilis fugit, hic maxime minus nam nihil nisi nulla quas quasi
-                        reprehenderit
-                        repudiandae sequi similique soluta ullam vel. Aperiam necessitatibus perferendis quaerat sit
-                        voluptatibus! Aliquam expedita impedit inventore perspiciatis praesentium qui similique sit.
-                        Amet
-                        error fugiat in ipsum iusto nulla rerum voluptate! Deleniti excepturi illo nihil qui quia unde
-                        velit. Ea earum error esse exercitationem ipsum nisi, optio possimus sapiente. Aperiam.
+                    <div className={"w-1/4 mr-10 shadow bg-white rounded-xl p-6"}>
+                        <div className={"text-center"}>
+                            <h2 className={"text-xl font-bold mb-2"}>Add an idea</h2>
+                            <p>Let us know what you would like and we'll take a look over!</p>
+                        </div>
+
+                        <div className={"space-y-4 mt-5"}>
+                            <input
+                                placeholder={"Your Idea"}
+                                className={"w-full bg-gray-100 font-semibold rounded-xl border-none"}
+                                type="text"/>
+
+                            <select
+                                placeholder={"Category"}
+                                className={"w-full bg-gray-100 font-semibold rounded-xl border-none"}
+                                name="category"
+                                id="">
+
+                                <option value="Category" disabled={true} selected>Category</option>
+                            </select>
+
+                            <textarea
+                                className={"w-full bg-gray-100 font-semibold rounded-xl border-none"}
+                                placeholder={"Describe your idea"}
+                                name=""
+                                id=""></textarea>
+                        </div>
+
+                        <div className={"space-x-4 flex mt-5"}>
+                            <button className={"font-bold bg-gray-200 w-1/2 h-10 rounded-xl"}>Attach</button>
+                            <button className={"font-bold bg-blue-500 text-white w-1/2 h-10 rounded-xl"}>Submit</button>
+                        </div>
                     </div>
 
                     <div className={"w-3/4"}>
                         <nav className="flex items-center text-gray-400 justify-between text xs mb-6">
                             <ul className="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
-                                <li><a className={"text-black border-b-4 pb-3 border-sky-500"} href="#">All Ideas
+                                <li><a className={"text-black border-b-4 pb-3 border-blue-500"} href="#">All Ideas
                                     (87)</a></li>
                                 <li><a href="#">Considering</a></li>
                                 <li><a href="#">In Progress</a></li>
