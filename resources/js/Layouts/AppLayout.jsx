@@ -37,7 +37,9 @@ export default function AppLayout({auth, children}) {
 
             <div className="bg-gray-background py-10">
                 <div className={"container max-w-7xl mx-auto flex"}>
-                    <div className={"w-1/4 mr-10 shadow bg-white rounded-xl p-6"}>
+
+                    {/*Section for adding ideas*/}
+                    <div className={"w-1/4 mr-10 h-min shadow bg-white rounded-xl p-6"}>
                         <div className={"text-center"}>
                             <h2 className={"text-xl font-bold mb-2"}>Add an idea</h2>
                             <p>Let us know what you would like and we'll take a look over!</p>
@@ -72,6 +74,7 @@ export default function AppLayout({auth, children}) {
                     </div>
 
                     <div className={"w-3/4"}>
+                        {/*Navigation for idea status types*/}
                         <nav className="flex items-center text-gray-400 justify-between text xs mb-6">
                             <ul className="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
                                 <li><a className={"text-black border-b-4 pb-3 border-blue-500"} href="#">All Ideas
@@ -86,11 +89,37 @@ export default function AppLayout({auth, children}) {
                             </ul>
                         </nav>
 
+                        {/*Idea filtering*/}
+                        <div className={"flex space-x-6 mb-6"}>
+                            <select
+                                placeholder={"Category"}
+                                className={"w-1/4 shadow bg-white font-semibold rounded-xl border-none"}
+                                name="category"
+                                id="">
+
+                                <option value="Category" disabled={true} selected>Category</option>
+                            </select>
+
+                            <select
+                                placeholder={"Category"}
+                                className={"w-1/4 shadow bg-white font-semibold rounded-xl border-none"}
+                                name="category"
+                                id="">
+
+                                <option value="Category" disabled={true} selected>Other Filters</option>
+                            </select>
+
+                            <input type="text" placeholder={"Find an idea"}
+                                   className={"w-2/4 shadow bg-white font-semibold rounded-xl border-none"}/>
+
+                        </div>
+
                         <div className={""}>
                             {children}
                         </div>
                     </div>
                 </div>
+
             </div>
         </>
     );
