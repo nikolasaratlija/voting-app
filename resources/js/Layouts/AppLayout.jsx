@@ -55,9 +55,10 @@ export default function AppLayout({auth, children}) {
                                 placeholder={"Category"}
                                 className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
                                 name="category"
+                                defaultValue={"Category"}
                                 id="">
 
-                                <option value="Category" disabled={true} selected>Category</option>
+                                <option value="Category" disabled={true}>Category</option>
                             </select>
 
                             <textarea
@@ -79,13 +80,21 @@ export default function AppLayout({auth, children}) {
                             <ul className="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
                                 <li><a className={"text-black border-b-4 pb-3 border-blue-500"} href="#">All Ideas
                                     (87)</a></li>
-                                <li><a className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"} href="#">Considering</a></li>
-                                <li><a className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"} href="#">In Progress</a></li>
+                                <li><a
+                                    className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
+                                    href="#">Considering</a></li>
+                                <li><a
+                                    className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
+                                    href="#">In Progress</a></li>
                             </ul>
 
                             <ul className="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
-                                <li><a className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"} href="#">Implemented (10)</a></li>
-                                <li><a className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"} href="#">Closed (55)</a></li>
+                                <li><a
+                                    className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
+                                    href="#">Implemented (10)</a></li>
+                                <li><a
+                                    className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
+                                    href="#">Closed (55)</a></li>
                             </ul>
                         </nav>
 
@@ -95,18 +104,20 @@ export default function AppLayout({auth, children}) {
                                 placeholder={"Category"}
                                 className={"w-1/4 shadow bg-white font-semibold rounded-xl border-none"}
                                 name="category"
+                                defaultValue={"Category"}
                                 id="">
 
-                                <option value="Category" disabled={true} selected>Category</option>
+                                <option value={"category"} disabled={true}>Category</option>
                             </select>
 
                             <select
                                 placeholder={"Category"}
                                 className={"w-1/4 shadow bg-white font-semibold rounded-xl border-none"}
                                 name="category"
+                                defaultValue={"Category"}
                                 id="">
 
-                                <option value="Category" disabled={true} selected>Other Filters</option>
+                                <option value={"Category"} disabled={true}>Other Filters</option>
                             </select>
 
                             <div className={"w-2/4 relative"}>
