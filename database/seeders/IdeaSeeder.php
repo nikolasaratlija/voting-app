@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Idea;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class IdeaSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Idea::factory(20)->create();
     }
 }
