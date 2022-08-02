@@ -36,4 +36,14 @@ class IdeaTest extends TestCase
         $response->assertSee($ideaTwo->title);
         $response->assertSee($ideaTwo->description);
     }
+
+    public function test_single_idea_shows_on_the_show_page()
+    {
+        $idea = Idea::factory()->create();
+
+        $response = $this->get(route('ideas.show', $idea));
+
+        $response->assertSee($idea->title);
+        $response->assertSee($idea->description);
+    }
 }

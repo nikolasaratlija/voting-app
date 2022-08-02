@@ -6,19 +6,33 @@ use App\Http\Requests\StoreIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class IdeaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
     public function index()
     {
         $ideas = Idea::all();
         return Inertia::render('Ideas/Index', [
             'ideas' => $ideas
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param Idea $idea
+     * @return Response
+     */
+    public function show(Idea $idea)
+    {
+        return Inertia::render('Ideas/Show', [
+            'idea' => $idea
         ]);
     }
 
@@ -44,20 +58,9 @@ class IdeaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Idea  $idea
-     * @return \Inertia\Response
-     */
-    public function show(Idea $idea)
-    {
-        return Inertia::render('Ideas/Show', compact('idea'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Idea  $idea
+     * @param Idea $idea
      * @return \Illuminate\Http\Response
      */
     public function edit(Idea $idea)
@@ -69,7 +72,7 @@ class IdeaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateIdeaRequest  $request
-     * @param  \App\Models\Idea  $idea
+     * @param Idea $idea
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateIdeaRequest $request, Idea $idea)
@@ -80,7 +83,7 @@ class IdeaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Idea  $idea
+     * @param Idea $idea
      * @return \Illuminate\Http\Response
      */
     public function destroy(Idea $idea)

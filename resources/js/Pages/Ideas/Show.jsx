@@ -2,13 +2,11 @@ import React from 'react';
 import AppLayout from "@/Layouts/AppLayout";
 import IdeaCard from "@/Components/IdeaCard";
 
-export default function Show(props) {
+export default function Show({idea, auth}) {
     return (
-        <AppLayout
-            auth={props.auth}
-        >
+        <AppLayout auth={auth}>
             <div className={"space-y-4"}>
-                <IdeaCard/>
+                <IdeaCard {...idea}/>
             </div>
         </AppLayout>
     )
