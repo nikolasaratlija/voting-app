@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\IdeaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -15,9 +16,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-   return Inertia::render('Index');
-});
+Route::get('/', [IdeaController::class, 'index'])->name('ideas.index');
+Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('ideas.show');
 
 Route::get('/info', function () {
     return Inertia::render('Laravel/Welcome', [
