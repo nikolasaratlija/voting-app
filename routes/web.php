@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [IdeaController::class, 'index'])->name('ideas.index');
-Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('ideas.show');
+Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('ideas.show');
 
 Route::get('/info', function () {
     return Inertia::render('Laravel/Welcome', [

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function IdeaCard({id, title, description}) {
+export default function IdeaCard({id, title, description, slug}) {
     return (
         <div className={"shadow rounded-md bg-white h-60 p-8 flex space-x-4"}>
             <div className={"flex flex-col justify-between py-3 items-center"}>
@@ -18,7 +18,7 @@ export default function IdeaCard({id, title, description}) {
             <div className={"flex flex-col justify-between"}>
                 <div>
                     <h3>
-                        <a href={route('ideas.show', id)} className={"font-semibold underline text-xl"}>{title}</a>
+                        <a href={route('ideas.show', slug)} className={"font-semibold underline text-xl"}>{title}</a>
                     </h3>
                     <p className={"mt-3"}>{description}</p>
                 </div>
