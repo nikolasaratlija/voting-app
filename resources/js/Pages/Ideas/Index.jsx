@@ -6,7 +6,8 @@ export default function Index({auth, ideas}) {
     return (
         <AppLayout auth={auth}>
             <div className={"space-y-4"}>
-                {ideas.map(idea => <IdeaCard {...idea}/>)}
+                {/* render each idea with a card */}
+                {ideas.map(idea => <IdeaCard key={idea.id} {...idea}/>)}
             </div>
         </AppLayout>
     )

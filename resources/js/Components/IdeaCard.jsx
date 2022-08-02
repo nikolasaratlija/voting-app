@@ -8,7 +8,7 @@ export default function IdeaCard({id, title, description}) {
                     <span className={"block text-2xl font-bold"}>12</span>
                     <span className={"block text-gray-400"}>Votes</span>
                 </div>
-                <button className={"uppercase font-bold bg-gray-200 rounded-xl w-16 h-10 text-xs"}>Vote</button>
+                <button className={"uppercase font-bold bg-gray-200 rounded-xl w-20 h-12 text-xs"}>Vote</button>
             </div>
 
             <div>
@@ -24,15 +24,21 @@ export default function IdeaCard({id, title, description}) {
                 </div>
 
                 <div className={"flex items-center justify-between"}>
-                    <div className={"space-x-4 text-gray-400"}>
+                    <div className={"space-x-2 text-gray-400 font-semibold"}>
                         <span>10 hours ago</span>
+                        <span>·</span>
                         <span>Category</span>
-                        <span>3 comments</span>
+                        <span>·</span>
+                        <span className={"text-black"}>3 comments</span>
                     </div>
-                    <div>
-                        <button className={"mr-2 uppercase font-bold text-xs bg-gray-200 h-6 w-16 rounded-xl"}>Open
+                    <div className={"flex items-center"}>
+                        <button className={"mr-2 uppercase font-bold text-xs bg-gray-200 h-8 w-28 rounded-xl"}>Open
                         </button>
-                        <button className={"uppercase font-bold text-xs bg-gray-200 h-6 w-16 rounded-xl"}>...</button>
+                        <button className={"uppercase font-bold text-xs bg-gray-200 h-8 w-16 rounded-xl"}>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 m-auto" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
