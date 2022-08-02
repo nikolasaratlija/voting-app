@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Models\Category;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -16,6 +17,13 @@ class IdeaTest extends TestCase
         $idea = Idea::factory()->create();
 
         $this->assertInstanceOf(User::class, $idea->user);
+    }
+
+    public function test_idea_belongs_to_category()
+    {
+        $idea = Idea::factory()->create();
+
+        $this->assertInstanceOf(Category::class, $idea->category);
     }
 
     public function test_idea_has_slug()
