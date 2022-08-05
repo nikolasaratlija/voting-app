@@ -28,13 +28,15 @@ class IdeaTest extends TestCase
 
     public function test_idea_has_slug()
     {
-        $idea = Idea::factory()->create([
-            'title' => 'My Test Idea'
-        ]);
+        $idea = Idea::factory()->create(['title' => 'My Test Idea']);
+        $this->assertEquals('my-test-idea', $idea->slug);
+    }
 
-        $ideaDuplicate = Idea::factory()->create([
-            'title' => 'My Test Idea'
-        ]);
+    public function test_duplicate_idea_titles_has_different_slugs()
+    {
+        $title = 'My Test Idea';
+        $idea = Idea::factory()->create(['title' => $title]);
+        $ideaDuplicate = Idea::factory()->create(['title' => $title]);
 
         $this->assertEquals('my-test-idea', $idea->slug);
         $this->assertEquals('my-test-idea-1', $ideaDuplicate->slug);
