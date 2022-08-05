@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from '@inertiajs/inertia-react'
 
 export default function IdeaCard(props) {
     return (
@@ -18,7 +19,7 @@ export default function IdeaCard(props) {
             <div className={"flex flex-col justify-between"}>
                 <div>
                     <h3>
-                        <a href={route('ideas.show', props.slug)} className={"font-semibold underline text-xl"}>{props.title}</a>
+                        <Link href={route('ideas.show', props.slug)} className={"font-semibold underline text-xl"}>{props.title}</Link>
                     </h3>
                     <p className={"mt-3"}>{props.description}</p>
                 </div>

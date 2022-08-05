@@ -17,9 +17,8 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        $ideas = Idea::all();
         return Inertia::render('Ideas/Index', [
-            'ideas' => $ideas
+            'ideas' => Idea::all()
         ]);
     }
 

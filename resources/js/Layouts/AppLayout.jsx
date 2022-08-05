@@ -70,8 +70,10 @@ export default function AppLayout({auth, children}) {
 
                         <div className={"space-x-4 flex mt-5"}>
                             <button className={"font-bold bg-gray-200 w-1/2 h-10 rounded-xl relative"}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute ml-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute ml-5" fill="none"
+                                     viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                          d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
                                 </svg>
 
                                 <span className={"ml-2"}>Attach</span>
@@ -84,14 +86,21 @@ export default function AppLayout({auth, children}) {
                         {/*Navigation for idea status types*/}
                         <nav className="flex items-center text-gray-400 justify-between text xs mb-6">
                             <ul className="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
-                                <li><a className={"text-black border-b-4 pb-3 border-blue-500"} href="#">All Ideas
-                                    (87)</a></li>
-                                <li><a
-                                    className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
-                                    href="#">Considering</a></li>
-                                <li><a
-                                    className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
-                                    href="#">In Progress</a></li>
+                                <li>
+                                    <Link className={"text-black border-b-4 pb-3 border-blue-500"} href="#">
+                                        All Ideas (87)
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
+                                        href="#">Considering</Link></li>
+                                <li>
+                                    <Link
+                                        className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
+                                        href="#">In Progress
+                                    </Link>
+                                </li>
                             </ul>
 
                             <ul className="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
