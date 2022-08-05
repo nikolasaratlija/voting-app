@@ -27,6 +27,11 @@ class Idea extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
     /**
      * returns created_at attribute in human readable format
      *
