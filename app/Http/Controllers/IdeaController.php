@@ -19,6 +19,15 @@ class IdeaController extends Controller
     {
         return Inertia::render('Ideas/Index', [
             'ideas' => Idea::all()
+                ->transform(fn ($idea) => [
+                    'id' => $idea->id,
+                    'category' => ['name' => $idea->category->name],
+                    'created_at' => $idea->created_at,
+                    'description' => $idea->description,
+                    'slug' => $idea->slug,
+                    'status' => ['name' => $idea->status->name],
+                    'title' => $idea->title,
+                ])
         ]);
     }
 

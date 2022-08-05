@@ -15,7 +15,7 @@ class Idea extends Model
 
     protected $guarded = [];
 
-    protected $with = ['category'];
+    protected $with = ['category', 'status'];
 
     public function user()
     {

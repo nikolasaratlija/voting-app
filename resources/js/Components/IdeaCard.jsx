@@ -33,7 +33,7 @@ export default function IdeaCard(props) {
                         <span className={"text-black"}>3 comments</span>
                     </div>
                     <div className={"flex items-center"}>
-                        <button className={"mr-2 uppercase font-bold text-xs bg-gray-200 h-8 w-28 rounded-xl"}>Open
+                        <button className={"mr-2 uppercase font-bold text-xs bg-gray-200 h-8 w-28 rounded-xl"}>{props.status.name}
                         </button>
                         <button className={"uppercase font-bold text-xs bg-gray-200 h-8 w-16 rounded-xl"}>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 m-auto" viewBox="0 0 20 20" fill="currentColor">
