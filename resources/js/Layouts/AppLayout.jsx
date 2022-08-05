@@ -13,7 +13,7 @@ export default function AppLayout({auth, children}) {
                 <div className={"flex items-center"}>
                     <div className="px-6 py-4 sm:block">
                         {auth.user ? (
-                            <Link href={route('logout')} className="text-sm text-gray-700 underline">
+                            <Link href={route('logout')} method="post" className="text-sm text-gray-700 underline">
                                 Log out
                             </Link>
                         ) : (
@@ -39,47 +39,64 @@ export default function AppLayout({auth, children}) {
                 <div className={"container max-w-7xl mx-auto flex"}>
 
                     {/*Section for adding ideas*/}
-                    <div className={"w-1/4 mr-10 h-min shadow bg-white rounded-xl p-6"}>
-                        <div className={"text-center"}>
-                            <h2 className={"text-xl font-bold mb-2"}>Add an idea</h2>
+                    <div className={"w-1/4 mr-10 h-min shadow bg-white rounded-xl p-6 text-center"}>
+                        <h2 className={"text-xl font-bold mb-2"}>Add an idea</h2>
+                        {auth.user ?
                             <p>Let us know what you would like and we'll take a look over!</p>
-                        </div>
+                            :
+                            <p>Please login to create an idea.</p>
+                        }
 
-                        <div className={"space-y-4 mt-5"}>
-                            <input
-                                placeholder={"Your Idea"}
-                                className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
-                                type="text"/>
+                        {auth.user ? (
+                            <>
+                                <div className={"space-y-4 mt-5"}>
+                                    <input
+                                        placeholder={"Your Idea"}
+                                        className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
+                                        type="text"/>
 
-                            <select
-                                placeholder={"Category"}
-                                className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
-                                name="category"
-                                defaultValue={"Category"}
-                                id="">
+                                    <select
+                                        placeholder={"Category"}
+                                        className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
+                                        name="category"
+                                        defaultValue={"Category"}
+                                        id="">
 
-                                <option value="Category" disabled={true}>Category</option>
-                            </select>
+                                        <option value="Category" disabled={true}>Category</option>
+                                    </select>
 
-                            <textarea
-                                className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
-                                placeholder={"Describe your idea"}
-                                name=""
-                                id=""></textarea>
-                        </div>
+                                    <textarea
+                                        className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
+                                        placeholder={"Describe your idea"}
+                                        name=""
+                                        id=""></textarea>
+                                </div>
 
-                        <div className={"space-x-4 flex mt-5"}>
-                            <button className={"font-bold bg-gray-200 w-1/2 h-10 rounded-xl relative"}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute ml-5" fill="none"
-                                     viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                    <path strokeLinecap="round" strokeLinejoin="round"
-                                          d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
-                                </svg>
+                                <div className={"space-x-4 flex mt-5"}>
+                                    <button className={"font-bold bg-gray-200 w-1/2 h-10 rounded-xl relative"}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 absolute ml-5"
+                                             fill="none"
+                                             viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                            <path strokeLinecap="round" strokeLinejoin="round"
+                                                  d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/>
+                                        </svg>
 
-                                <span className={"ml-2"}>Attach</span>
-                            </button>
-                            <button className={"font-bold bg-blue-500 text-white w-1/2 h-10 rounded-xl"}>Submit</button>
-                        </div>
+                                        <span className={"ml-2"}>Attach</span>
+                                    </button>
+                                    <button
+                                        className={"font-bold bg-blue-500 text-white w-1/2 h-10 rounded-xl"}>Submit
+                                    </button>
+                                </div>
+                            </>
+                        ) : (
+                            <Link
+                                href={route('login')}
+                                as={"button"}
+                                className={"mx-auto mt-4 font-bold bg-blue-500 text-white w-1/2 h-10 rounded-xl"}>
+                                Login
+                            </Link>
+                        )}
+
                     </div>
 
                     <div className={"w-3/4"}>
