@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
+use App\Models\Status;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -19,7 +21,7 @@ class IdeaController extends Controller
     {
         return Inertia::render('Ideas/Index', [
             'ideas' => Idea::all()
-                ->transform(fn ($idea) => [
+                ->transform(fn($idea) => [
                     'id' => $idea->id,
                     'category' => ['name' => $idea->category->name],
                     'created_at' => $idea->created_at,
@@ -57,12 +59,20 @@ class IdeaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreIdeaRequest  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreIdeaRequest $request)
+    public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $attributes['status_id'] = Status::where('name', '=', 'open')->first()->id;
+
+        auth()->user()->ideas()->create($attributes);
     }
 
     /**
@@ -79,7 +89,7 @@ class IdeaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateIdeaRequest  $request
+     * @param \App\Http\Requests\UpdateIdeaRequest $request
      * @param Idea $idea
      * @return \Illuminate\Http\Response
      */

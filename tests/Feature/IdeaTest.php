@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Category;
 use App\Models\Idea;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -39,5 +40,22 @@ class IdeaTest extends TestCase
 
         $response->assertSee($idea->title);
         $response->assertSee($idea->description);
+    }
+
+    public function test_authenticated_user_can_create_idea()
+    {
+        $this->withoutExceptionHandling();
+        $this->actingAs(User::factory()->create());
+        $category = Category::factory()->create();
+
+        $attributes = [
+            'title' => fake()->sentence,
+            'description' => fake()->sentence,
+            'category_id' => $category->id
+        ];
+
+        $this->post(route('ideas.store', $attributes));
+
+        $this->assertDatabaseHas('ideas', $attributes);
     }
 }

@@ -49,4 +49,40 @@ class IdeaTest extends TestCase
         $this->assertEquals('my-test-idea', $idea->slug);
         $this->assertEquals('my-test-idea-1', $ideaDuplicate->slug);
     }
+
+    public function test_store_idea_requires_title()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $ideaAttributes = Idea::factory()->raw([
+            'title' => ''
+        ]);
+
+        $this->post(route('ideas.store'), $ideaAttributes)
+            ->assertSessionHasErrors('title');
+    }
+
+    public function test_store_idea_requires_description()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $ideaAttributes = Idea::factory()->raw([
+            'description' => ''
+        ]);
+
+        $this->post(route('ideas.store'), $ideaAttributes)
+            ->assertSessionHasErrors('description');
+    }
+
+    public function test_store_idea_requires_category()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $ideaAttributes = Idea::factory()->raw([
+            'category_id' => ''
+        ]);
+
+        $this->post(route('ideas.store'), $ideaAttributes)
+            ->assertSessionHasErrors('category_id');
+    }
 }
