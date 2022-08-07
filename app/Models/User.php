@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Idea::class);
     }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
 }

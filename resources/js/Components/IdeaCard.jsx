@@ -6,7 +6,7 @@ export default function IdeaCard(props) {
         <div className={"shadow rounded-md bg-white h-60 p-8 flex space-x-4"}>
             <div className={"flex flex-col justify-between py-3 items-center"}>
                 <div className={"flex flex-col items-center"}>
-                    <span className={"block text-2xl font-bold"}>12</span>
+                    <span className={"block text-2xl font-bold"}>{props.votes_count}</span>
                     <span className={"block text-gray-400"}>Votes</span>
                 </div>
                 <button className={"uppercase font-bold bg-gray-200 rounded-xl w-20 h-12 text-xs"}>Vote</button>

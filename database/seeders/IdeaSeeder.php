@@ -18,3 +18,4 @@ class IdeaSeeder extends Seeder
         Idea::factory(20)->create();
     }
 }
+

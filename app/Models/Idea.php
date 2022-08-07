@@ -50,4 +50,9 @@ class Idea extends Model
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
     }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
 }

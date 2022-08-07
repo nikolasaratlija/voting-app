@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             CategorySeeder::class,
             UserSeeder::class,
-            IdeaSeeder::class
+            IdeaSeeder::class,
+            VoteSeeder::class
         ]);
     }
 }

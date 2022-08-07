@@ -20,7 +20,8 @@ class IdeaController extends Controller
     public function index()
     {
         return Inertia::render('Ideas/Index', [
-            'ideas' => Idea::all()
+            'ideas' => Idea::withCount('votes')
+                ->get()
                 ->transform(fn($idea) => [
                     'id' => $idea->id,
                     'category' => ['name' => $idea->category->name],
@@ -29,6 +30,7 @@ class IdeaController extends Controller
                     'slug' => $idea->slug,
                     'status' => ['name' => $idea->status->name],
                     'title' => $idea->title,
+                    'votes_count' => $idea->votes_count
                 ])
         ]);
     }

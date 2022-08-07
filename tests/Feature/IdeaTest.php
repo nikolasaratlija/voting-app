@@ -44,7 +44,6 @@ class IdeaTest extends TestCase
 
     public function test_authenticated_user_can_create_idea()
     {
-        $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create());
         $category = Category::factory()->create();
 
