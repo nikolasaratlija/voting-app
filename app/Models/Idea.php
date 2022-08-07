@@ -55,4 +55,30 @@ class Idea extends Model
     {
         return $this->hasMany(Vote::class);
     }
+
+    public function isVotedByUser(User $user)
+    {
+        return Vote::where('user_id', $user->id)
+            ->where('idea_id', $this->id)
+            ->exists();
+    }
+
+    public function addVote(User $user)
+    {
+        // cannot vote for idea unless idea is open
+        if ($this->status_id !== 1)
+            return;
+
+        Vote::create([
+            'user_id' => $user->id,
+            'idea_id' => $this->id
+        ]);
+    }
+
+    public function removeVote(User $user)
+    {
+        Vote::where('user_id', $user->id)
+            ->where('idea_id', $this->id)
+            ->delete();
+    }
 }
