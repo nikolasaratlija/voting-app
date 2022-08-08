@@ -19,20 +19,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Ideas/Index', [
-            'ideas' => Idea::withCount('votes')
-                ->get()
-                ->transform(fn($idea) => [
-                    'id' => $idea->id,
-                    'category' => ['name' => $idea->category->name],
-                    'created_at' => $idea->created_at,
-                    'description' => $idea->description,
-                    'slug' => $idea->slug,
-                    'status' => ['name' => $idea->status->name],
-                    'title' => $idea->title,
-                    'votes_count' => $idea->votes_count
-                ])
-        ]);
+        return Inertia::render('Ideas/Index');
     }
 
     /**
@@ -72,6 +59,7 @@ class IdeaController extends Controller
             'category_id' => 'required'
         ]);
 
+        // default status 'open'
         $attributes['status_id'] = Status::where('name', '=', 'open')->first()->id;
 
         auth()->user()->ideas()->create($attributes);

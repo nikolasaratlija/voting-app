@@ -5,6 +5,7 @@ import CreateIdea from "@/Components/Index/CreateIdea";
 
 export default function AppLayout({children}) {
     const {auth} = usePage().props
+    const {ideas} = usePage().props
 
     return (
         <>
@@ -68,7 +69,7 @@ export default function AppLayout({children}) {
                                 <li>
                                     <Link className={"text-black border-b-4 pb-3 border-blue-500"}
                                           href={route('ideas.index')}>
-                                        All Ideas (87)
+                                        All Ideas ({ideas.length})
                                     </Link>
                                 </li>
                                 <li>

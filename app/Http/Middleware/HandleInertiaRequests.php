@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Idea;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -18,7 +19,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * Determine the current asset version.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return string|null
      */
     public function version(Request $request)
@@ -29,7 +30,7 @@ class HandleInertiaRequests extends Middleware
     /**
      * Define the props that are shared by default.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function share(Request $request)
@@ -43,6 +44,17 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            'ideas' => Idea::all()
+                ->transform(fn($idea) => [
+                    'id' => $idea->id,
+                    'category' => ['name' => $idea->category->name],
+                    'created_at' => $idea->created_at,
+                    'description' => $idea->description,
+                    'slug' => $idea->slug,
+                    'status' => ['name' => $idea->status->name],
+                    'title' => $idea->title,
+                    'votes_count' => $idea->votes_count
+                ])
         ]);
     }
 }

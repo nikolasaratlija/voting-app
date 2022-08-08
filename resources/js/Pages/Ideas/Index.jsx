@@ -3,7 +3,9 @@ import AppLayout from "@/Layouts/AppLayout";
 import IdeaCard from "@/Components/IdeaCard";
 import {usePage} from "@inertiajs/inertia-react";
 
-export default function Index({ideas}) {
+export default function Index() {
+    const {ideas} = usePage().props
+
     return (
         <div className={"space-y-4"}>
             {/* render each idea with a card */}
