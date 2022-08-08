@@ -17,6 +17,8 @@ class Idea extends Model
 
     protected $with = ['category', 'status'];
 
+    protected $appends = ['votes_count'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -42,6 +44,11 @@ class Idea extends Model
         return Attribute::make(
             get: fn ($value) => Carbon::parse($value)->diffForHumans()
         );
+    }
+
+    public function getVotesCountAttribute()
+    {
+        return $this->votes()->count();
     }
 
     public function getSlugOptions(): SlugOptions
