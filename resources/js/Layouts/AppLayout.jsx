@@ -1,9 +1,11 @@
 import React from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import {Link} from '@inertiajs/inertia-react';
+import {Link, usePage} from '@inertiajs/inertia-react';
 import CreateIdea from "@/Components/Index/CreateIdea";
 
-export default function AppLayout({auth, children}) {
+export default function AppLayout({children}) {
+    const {auth} = usePage().props
+
     return (
         <>
             <header className={"flex items-center justify-between px-8 py-4"}>
@@ -14,16 +16,18 @@ export default function AppLayout({auth, children}) {
                 <div className={"flex items-center"}>
                     <div className="px-6 py-4 sm:block">
                         {auth.user ? (
-                            <Link href={route('logout')} method="post" className="text-sm text-gray-700 underline">
+                            <Link href={route('logout')} method="post" className="text-sm text-gray-700 underline"
+                                  as="button">
                                 Log out
                             </Link>
                         ) : (
                             <>
-                                <Link href={route('login')} className="text-sm text-gray-700 underline">
+                                <Link href={route('login')} className="text-sm text-gray-700 underline" as="button">
                                     Log in
                                 </Link>
 
-                                <Link href={route('register')} className="ml-4 text-sm text-gray-700 underline">
+                                <Link href={route('register')} className="ml-4 text-sm text-gray-700 underline"
+                                      as="button">
                                     Register
                                 </Link>
                             </>
@@ -62,7 +66,8 @@ export default function AppLayout({auth, children}) {
                         <nav className="flex items-center text-gray-400 justify-between text xs mb-6">
                             <ul className="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
                                 <li>
-                                    <Link className={"text-black border-b-4 pb-3 border-blue-500"} href="#">
+                                    <Link className={"text-black border-b-4 pb-3 border-blue-500"}
+                                          href={route('ideas.index')}>
                                         All Ideas (87)
                                     </Link>
                                 </li>
