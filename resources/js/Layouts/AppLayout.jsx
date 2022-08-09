@@ -69,7 +69,7 @@ export default function AppLayout({children}) {
                                 <li>
                                     <Link className={"text-black border-b-4 pb-3 border-blue-500"}
                                           href={route('ideas.index')}>
-                                        All Ideas ({ideas.length})
+                                        All Ideas ({ideas.total})
                                     </Link>
                                 </li>
                                 <li>

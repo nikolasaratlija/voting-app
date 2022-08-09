@@ -15,7 +15,7 @@ class IdeaSeeder extends Seeder
      */
     public function run()
     {
-        Idea::factory(20)->create();
+        Idea::factory(50)->create();
     }
 }
 
