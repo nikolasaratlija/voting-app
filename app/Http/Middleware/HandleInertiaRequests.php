@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Idea;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -45,6 +46,7 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
             'ideas' => Idea::latest()
+                ->with('category', 'status')
                 ->orderBy('id')
                 ->paginate(5)
                 ->through(fn($idea) => [
@@ -55,8 +57,9 @@ class HandleInertiaRequests extends Middleware
                     'slug' => $idea->slug,
                     'status' => ['name' => $idea->status->name],
                     'title' => $idea->title,
-                    'votes_count' => $idea->votes_count
-                ])
+                    'votes_count' => $idea->votes()->count()
+                ]),
+            'status_count' => Status::getCount()
         ]);
     }
 }

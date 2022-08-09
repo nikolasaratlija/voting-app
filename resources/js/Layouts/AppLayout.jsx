@@ -1,11 +1,14 @@
 import React from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import {Link, usePage} from '@inertiajs/inertia-react';
+import {Link, usePage, useForm} from '@inertiajs/inertia-react';
 import CreateIdea from "@/Components/Index/CreateIdea";
+import StatusNavigation from "@/Components/Index/StatusNavigation";
 
 export default function AppLayout({children}) {
-    const {auth} = usePage().props
-    const {ideas} = usePage().props
+    const {auth, status_count} = usePage().props
+    const {data, setData} = useForm({
+        'search': ''
+    })
 
     return (
         <>
@@ -63,36 +66,7 @@ export default function AppLayout({children}) {
                     </div>
 
                     <div className={"w-3/4"}>
-                        {/*Navigation for idea status types*/}
-                        <nav className="flex items-center text-gray-400 justify-between text xs mb-6">
-                            <ul className="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
-                                <li>
-                                    <Link className={"text-black border-b-4 pb-3 border-blue-500"}
-                                          href={route('ideas.index')}>
-                                        All Ideas ({ideas.total})
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
-                                        href="#">Considering</Link></li>
-                                <li>
-                                    <Link
-                                        className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
-                                        href="#">In Progress
-                                    </Link>
-                                </li>
-                            </ul>
-
-                            <ul className="flex uppercase font-semibold space-x-10 pb-3 border-b-4">
-                                <li><a
-                                    className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
-                                    href="#">Implemented (10)</a></li>
-                                <li><a
-                                    className={"pb-3 hover:text-gray-600 hover:border-b-4 hover:pb-3 hover:border-blue-300"}
-                                    href="#">Closed (55)</a></li>
-                            </ul>
-                        </nav>
+                        <StatusNavigation status_count={status_count}/>
 
                         {/*Idea filtering*/}
                         <div className={"flex space-x-6 mb-6"}>
@@ -127,6 +101,8 @@ export default function AppLayout({children}) {
                                 <input
                                     type="text"
                                     placeholder={"Find an idea"}
+                                    value={data.search}
+                                    onChange={event => setData('search', event.target.value)}
                                     className={"pl-10 w-full shadow bg-white font-semibold rounded-xl border-none placeholder-gray-900"}/>
                             </div>
 

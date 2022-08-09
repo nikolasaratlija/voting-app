@@ -31,7 +31,7 @@ class IdeaController extends Controller
     public function show(Idea $idea)
     {
         return Inertia::render('Ideas/Show', [
-            'idea' => $idea
+            'idea' => $idea->load('status', 'category')->loadCount('votes')
         ]);
     }
 
