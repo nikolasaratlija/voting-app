@@ -44,7 +44,9 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
-            'ideas' => Idea::latest()->paginate(5)
+            'ideas' => Idea::latest()
+                ->orderBy('id')
+                ->paginate(5)
                 ->through(fn($idea) => [
                     'id' => $idea->id,
                     'category' => ['name' => $idea->category->name],

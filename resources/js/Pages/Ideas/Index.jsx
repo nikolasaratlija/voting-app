@@ -13,17 +13,17 @@ export default function Index() {
                 {/* render each idea with a card */}
                 {ideas.data.map(idea => <IdeaCard key={idea.id} {...idea}/>)}
             </div>
+
             <div className={"mt-6 flex items-center space-x-4 justify-center text-lg"}>
-                {
-                    ideas.links.map((link, index) =>
-                        <Link
-                            className={"font-bold underline"}
-                            key={index}
-                            href={link.url}
-                        >
-                            {link.label}
-                        </Link>)
-                }
+                {ideas.links.map((link, index) =>
+                    <Link
+                        className={`${link.active ? 'font-bold' : ''} ${!link.url ? 'text-gray-400 cursor-default' : ''}`}
+                        key={index}
+                        href={link.url}
+                    >
+                        {link.label}
+                    </Link>
+                )}
             </div>
         </>
     )
