@@ -4,8 +4,8 @@ import IdeaCard from "@/Components/IdeaCard";
 import {usePage} from "@inertiajs/inertia-react";
 import {Link} from '@inertiajs/inertia-react'
 
-export default function Index() {
-    const {ideas} = usePage().props
+export default function Index({ideas}) {
+    // const {ideas} = usePage().props
 
     return (
         <>

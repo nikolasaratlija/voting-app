@@ -45,20 +45,6 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
-            'ideas' => Idea::latest()
-                ->with('category', 'status')
-                ->orderBy('id')
-                ->paginate(5)
-                ->through(fn($idea) => [
-                    'id' => $idea->id,
-                    'category' => ['name' => $idea->category->name],
-                    'created_at' => $idea->created_at,
-                    'description' => $idea->description,
-                    'slug' => $idea->slug,
-                    'status' => ['name' => $idea->status->name],
-                    'title' => $idea->title,
-                    'votes_count' => $idea->votes()->count()
-                ]),
             'status_count' => Status::getCount()
         ]);
     }
