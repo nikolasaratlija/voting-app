@@ -15,15 +15,19 @@ export default function Index() {
             </div>
 
             <div className={"mt-6 flex items-center space-x-4 justify-center text-lg"}>
-                {ideas.links.map((link, index) =>
-                    <Link
-                        className={`${link.active ? 'font-bold' : ''} ${!link.url ? 'text-gray-400 cursor-default' : ''}`}
+                {ideas.links.map((link, index) => {
+                    const classNames = [
+                        link.active ? 'font-bold' : '',
+                        !link.url ? 'text-gray-400 cursor-default' : '']
+
+                    return <Link
+                        className={classNames.join(' ')}
                         key={index}
                         href={link.url}
                     >
                         {link.label}
                     </Link>
-                )}
+                })}
             </div>
         </>
     )
