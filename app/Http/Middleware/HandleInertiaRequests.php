@@ -45,6 +45,16 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
             'ideas' => Idea::latest()->paginate(5)
+                ->through(fn($idea) => [
+                    'id' => $idea->id,
+                    'category' => ['name' => $idea->category->name],
+                    'created_at' => $idea->created_at,
+                    'description' => $idea->description,
+                    'slug' => $idea->slug,
+                    'status' => ['name' => $idea->status->name],
+                    'title' => $idea->title,
+                    'votes_count' => $idea->votes_count
+                ])
         ]);
     }
 }
