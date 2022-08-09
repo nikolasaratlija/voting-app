@@ -22,6 +22,7 @@ class IdeaController extends Controller
         return Inertia::render('Ideas/Index', [
             'ideas' => Idea::latest()
                 ->with('category', 'status')
+                ->withCount('votes')
                 ->orderBy('id')
                 ->paginate(5)
                 ->through(fn($idea) => [
@@ -32,7 +33,7 @@ class IdeaController extends Controller
                     'slug' => $idea->slug,
                     'status' => ['name' => $idea->status->name],
                     'title' => $idea->title,
-                    'votes_count' => $idea->votes()->count()
+                    'votes_count' => $idea->votes_count
                 ])
         ]);
     }
