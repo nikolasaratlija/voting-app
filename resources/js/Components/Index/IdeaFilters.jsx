@@ -3,15 +3,20 @@ import {Inertia} from "@inertiajs/inertia";
 import {usePage} from "@inertiajs/inertia-react";
 
 export default function IdeaFilters() {
-    const [query, setQuery] = useState('')
     const {filters} = usePage().props
 
+    const [search, setSearch] = useState(filters.search || '')
+
     useEffect(() => {
-        Inertia.get(route('ideas.index'), {search: query}, {
+        Inertia.get(route('ideas.index'), {search: search}, {
             replace: true,
             preserveState: true,
         })
-    }, [query])
+    }, [search])
+
+    function handleChange(e) {
+        setSearch(e.target.value)
+    }
 
     return (
         <div className={"flex space-x-6 mb-6"}>
@@ -47,9 +52,9 @@ export default function IdeaFilters() {
                     type="search"
                     id="search"
                     placeholder={"Find an idea"}
-                    onChange={e => setQuery(e.target.value)}
+                    onChange={handleChange}
                     name="search"
-                    value={filters.search}
+                    value={search}
                     className={"pl-10 w-full shadow bg-white font-semibold rounded-xl border-none placeholder-gray-900"}/>
             </div>
         </div>
