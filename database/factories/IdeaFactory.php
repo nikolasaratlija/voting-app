@@ -21,7 +21,7 @@ class IdeaFactory extends Factory
     {
         return [
             'category_id' => Category::factory(),
-            'user_id' => User::all()->random()->id,
+            'user_id' => User::factory(),
             'status_id' => Status::all()->random()->id,
             'title' => fake()->sentence,
             'description' => fake()->paragraph(5)

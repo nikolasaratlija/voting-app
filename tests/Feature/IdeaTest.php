@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\User;
+use Database\Seeders\StatusSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -12,6 +13,12 @@ use Tests\TestCase;
 class IdeaTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed(StatusSeeder::class);
+    }
 
     public function test_index_ok()
     {
