@@ -21,10 +21,14 @@ class IdeaController extends Controller
     {
         return Inertia::render('Ideas/Index', [
             'ideas' => Idea::latest()
+                ->when(request('search'), function ($query, $search) {
+                    $query->where('title', 'LIKE', "%{$search}%");
+                })
                 ->with('category', 'status')
                 ->withCount('votes')
                 ->orderBy('id')
                 ->paginate(5)
+                ->withQueryString()
                 ->through(fn($idea) => [
                     'id' => $idea->id,
                     'category' => ['name' => $idea->category->name],
@@ -34,7 +38,8 @@ class IdeaController extends Controller
                     'status' => ['name' => $idea->status->name],
                     'title' => $idea->title,
                     'votes_count' => $idea->votes_count
-                ])
+                ]),
+            'filters' => request()->only(['search'])
         ]);
     }
 

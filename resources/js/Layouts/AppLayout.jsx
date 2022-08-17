@@ -1,14 +1,12 @@
 import React from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
-import {Link, usePage, useForm} from '@inertiajs/inertia-react';
+import {Link, usePage} from '@inertiajs/inertia-react';
 import CreateIdea from "@/Components/Index/CreateIdea";
 import StatusNavigation from "@/Components/Index/StatusNavigation";
+import IdeaFilters from "@/Components/Index/IdeaFilters";
 
 export default function AppLayout({children}) {
     const {auth, status_count} = usePage().props
-    const {data, setData} = useForm({
-        'search': ''
-    })
 
     return (
         <>
@@ -68,45 +66,7 @@ export default function AppLayout({children}) {
                     <div className={"w-3/4"}>
                         <StatusNavigation status_count={status_count}/>
 
-                        {/*Idea filtering*/}
-                        <div className={"flex space-x-6 mb-6"}>
-                            <select
-                                placeholder={"Category"}
-                                className={"w-1/4 shadow bg-white font-semibold rounded-xl border-none"}
-                                name="category"
-                                defaultValue={"category"}
-                                id="">
-
-                                <option value={"category"} disabled={true}>Category</option>
-                            </select>
-
-                            <select
-                                placeholder={"Category"}
-                                className={"w-1/4 shadow bg-white font-semibold rounded-xl border-none"}
-                                name="category"
-                                defaultValue={"Category"}
-                                id="">
-
-                                <option value={"Category"} disabled={true}>Other Filters</option>
-                            </select>
-
-                            <div className={"w-2/4 relative"}>
-                                <div className={"flex absolute left-0 items-center h-full ml-2"}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6"
-                                         fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                        <path strokeLinecap="round" strokeLinejoin="round"
-                                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                    </svg>
-                                </div>
-                                <input
-                                    type="text"
-                                    placeholder={"Find an idea"}
-                                    value={data.search}
-                                    onChange={event => setData('search', event.target.value)}
-                                    className={"pl-10 w-full shadow bg-white font-semibold rounded-xl border-none placeholder-gray-900"}/>
-                            </div>
-
-                        </div>
+                        <IdeaFilters/>
 
                         <div className={""}>
                             {children}
