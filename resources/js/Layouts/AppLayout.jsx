@@ -2,7 +2,7 @@ import React from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import {Link, usePage} from '@inertiajs/inertia-react';
 import CreateIdea from "@/Components/Index/CreateIdea";
-import StatusNavigation from "@/Components/Index/StatusNavigation";
+import StatusFilter from "@/Components/Index/StatusFilter";
 import IdeaFilters from "@/Components/Index/IdeaFilters";
 
 export default function AppLayout({children}) {
@@ -64,13 +64,9 @@ export default function AppLayout({children}) {
                     </div>
 
                     <div className={"w-3/4"}>
-                        <StatusNavigation status_count={status_count}/>
+                        <StatusFilter status_count={status_count}/>
 
-                        <IdeaFilters/>
-
-                        <div className={""}>
-                            {children}
-                        </div>
+                        {children}
                     </div>
                 </div>
 

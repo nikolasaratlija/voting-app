@@ -7,15 +7,13 @@ export default function IdeaFilters() {
 
     const [search, setSearch] = useState(filters.search || '')
 
-    useEffect(() => {
-        Inertia.get(route('ideas.index'), {search: search}, {
+    function handleChange(e) {
+        setSearch(e.target.value)
+
+        Inertia.get(route('ideas.index'), {search: e.target.value}, {
             replace: true,
             preserveState: true,
         })
-    }, [search])
-
-    function handleChange(e) {
-        setSearch(e.target.value)
     }
 
     return (
