@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, usePage} from "@inertiajs/inertia-react";
+import {mergeQueryString} from "@/util/mergeQueryString";
 
 function StatusFilter({status_count}) {
     const {url} = usePage()
@@ -21,7 +22,7 @@ function StatusFilter({status_count}) {
                 <li>
                     <Link
                         className={url.includes('considering') ? activeLinkCss : inActiveLinkCss}
-                        href={route('ideas.index', {status: 'considering'})}
+                        href={route('ideas.index', mergeQueryString('status', 'considering'))}
                     >
                         Considering ({status_count.considering})
                     </Link>
@@ -29,7 +30,7 @@ function StatusFilter({status_count}) {
                 <li>
                     <Link
                         className={url.includes('in_progress') ? activeLinkCss : inActiveLinkCss}
-                        href={route('ideas.index', {status: 'in_progress'})}
+                        href={route('ideas.index', mergeQueryString('status', 'in_progress'))}
                     >
                         In Progress ({status_count.in_progress})
                     </Link>
@@ -40,7 +41,7 @@ function StatusFilter({status_count}) {
                 <li>
                     <Link
                         className={url.includes('implemented') ? activeLinkCss : inActiveLinkCss}
-                        href={route('ideas.index', {status: 'implemented'})}
+                        href={route('ideas.index', mergeQueryString('status', 'implemented'))}
                     >
                         Implemented ({status_count.implemented})
                     </Link>
@@ -48,7 +49,7 @@ function StatusFilter({status_count}) {
                 <li>
                     <Link
                         className={url.includes('closed') ? activeLinkCss : inActiveLinkCss}
-                        href={route('ideas.index', {status: 'closed'})}
+                        href={route('ideas.index', mergeQueryString('status', 'closed'))}
                     >
                         Closed ({status_count.closed})
                     </Link>

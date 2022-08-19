@@ -3,7 +3,6 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import {Link, usePage} from '@inertiajs/inertia-react';
 import CreateIdea from "@/Components/Index/CreateIdea";
 import StatusFilter from "@/Components/Index/StatusFilter";
-import IdeaFilters from "@/Components/Index/IdeaFilters";
 
 export default function AppLayout({children}) {
     const {auth, status_count} = usePage().props

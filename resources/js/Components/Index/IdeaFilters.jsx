@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Inertia} from "@inertiajs/inertia";
 import {usePage} from "@inertiajs/inertia-react";
+import {mergeQueryString} from "@/util/mergeQueryString";
 
 export default function IdeaFilters() {
     const {filters} = usePage().props
@@ -10,7 +11,9 @@ export default function IdeaFilters() {
     function handleChange(e) {
         setSearch(e.target.value)
 
-        Inertia.get(route('ideas.index'), {search: e.target.value}, {
+        let parameters = mergeQueryString('search', e.target.value)
+
+        Inertia.get(route('ideas.index'), parameters, {
             replace: true,
             preserveState: true,
         })
