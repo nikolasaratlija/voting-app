@@ -1,15 +1,30 @@
 import React from 'react';
+import {useForm} from "@inertiajs/inertia-react";
 
 function CreateIdea(props) {
+    const {data, setData, post} = useForm({
+        title: '',
+        category: 'category',
+        description: ''
+    })
+
+    function submit(e) {
+        e.preventDefault()
+        post(route('ideas.store'))
+    }
+
     return (
-        <>
+        <form onSubmit={submit}>
             <p>Let us know what you would like and we'll take a look over!</p>
 
             <div className={"space-y-4 mt-5"}>
                 <input
                     placeholder={"Your Idea"}
                     className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
-                    type="text"/>
+                    type="text"
+                    value={data.title}
+                    onChange={e => setData('title', e.target.value)}
+                />
 
                 <select
                     placeholder={"Category"}
@@ -25,7 +40,10 @@ function CreateIdea(props) {
                     className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
                     placeholder={"Describe your idea"}
                     name=""
-                    id=""></textarea>
+                    id=""
+                    value={data.description}
+                    onChange={e => setData('description', e.target.value)}
+                ></textarea>
             </div>
 
             <div className={"space-x-4 flex mt-5"}>
@@ -40,10 +58,13 @@ function CreateIdea(props) {
                     <span className={"ml-2"}>Attach</span>
                 </button>
                 <button
-                    className={"font-bold bg-blue-500 text-white w-1/2 h-10 rounded-xl"}>Submit
+                    className={"font-bold bg-blue-500 text-white w-1/2 h-10 rounded-xl"}
+                    type="submit"
+                >
+                    Submit
                 </button>
             </div>
-        </>
+        </form>
     );
 }
 

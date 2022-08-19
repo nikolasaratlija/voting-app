@@ -75,20 +75,24 @@ class IdeaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $attributes = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'category_id' => 'required'
+//            'category_id' => 'required'
         ]);
+
+        $attributes['category_id'] = 1; // TEMPORARY
 
         // default status 'open'
         $attributes['status_id'] = Status::where('name', '=', 'open')->first()->id;
 
         auth()->user()->ideas()->create($attributes);
+
+        return redirect()->route('ideas.index');
     }
 
     /**

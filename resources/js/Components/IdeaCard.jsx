@@ -16,7 +16,7 @@ export default function IdeaCard(props) {
                 <div className={"bg-gray-400 h-16 w-16 rounded-xl"}></div>
             </div>
 
-            <div className={"flex flex-col justify-between"}>
+            <div className={"flex w-full flex-col justify-between"}>
                 <div>
                     <h3>
                         <Link href={route('ideas.show', props.slug)} className={"font-semibold underline text-xl"}>{props.title}</Link>
