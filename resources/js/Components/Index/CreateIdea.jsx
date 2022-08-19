@@ -2,7 +2,7 @@ import React from 'react';
 import {useForm} from "@inertiajs/inertia-react";
 
 function CreateIdea(props) {
-    const {data, setData, post, recentlySuccessful, reset} = useForm({
+    const {data, setData, post, recentlySuccessful, reset, errors} = useForm({
         title: '',
         category: 'category',
         description: ''
@@ -22,7 +22,7 @@ function CreateIdea(props) {
             <form onSubmit={submit}>
                 <p>Let us know what you would like and we'll take a look over!</p>
 
-                <div className={"space-y-4 mt-5"}>
+                <div className={"mt-5"}>
                     <input
                         placeholder={"Your Idea"}
                         className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
@@ -30,10 +30,11 @@ function CreateIdea(props) {
                         value={data.title}
                         onChange={e => setData('title', e.target.value)}
                     />
+                    {errors.title && <p className={"text-red-500 mt-1 text-xs text-start"}>{errors.title}</p>}
 
                     <select
                         placeholder={"Category"}
-                        className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
+                        className={"w-full mt-4 bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
                         name="category"
                         defaultValue={"Category"}
                         id="">
@@ -42,13 +43,15 @@ function CreateIdea(props) {
                     </select>
 
                     <textarea
-                        className={"w-full bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
+                        className={"w-full mt-4 bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
                         placeholder={"Describe your idea"}
                         name=""
                         id=""
                         value={data.description}
                         onChange={e => setData('description', e.target.value)}
                     ></textarea>
+                    {errors.description && <p className={"text-red-500 mt-1 text-xs text-start"}>{errors.description}</p>}
+
                 </div>
 
                 <div className={"space-x-4 flex mt-5"}>
