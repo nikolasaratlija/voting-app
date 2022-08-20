@@ -82,12 +82,10 @@ class IdeaController extends Controller
         $attributes = $request->validate([
             'title' => 'required',
             'description' => 'required',
-//            'category_id' => 'required'
+            'category_id' => 'required'
         ]);
 
-        $attributes['category_id'] = 1; // TEMPORARY
-
-        // default status 'open'
+        // initial status is 'open'
         $attributes['status_id'] = Status::where('name', '=', 'open')->first()->id;
 
         auth()->user()->ideas()->create($attributes);

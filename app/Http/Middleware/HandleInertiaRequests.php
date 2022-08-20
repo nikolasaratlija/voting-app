@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -45,7 +46,8 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
-            'status_count' => Status::getCount()
+            'status_count' => Status::getCount(),
+            'categories' => Category::select('name', 'id')->get()
         ]);
     }
 }

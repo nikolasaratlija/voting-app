@@ -1,10 +1,12 @@
 import React from 'react';
-import {useForm} from "@inertiajs/inertia-react";
+import {useForm, usePage} from "@inertiajs/inertia-react";
 
-function CreateIdea(props) {
+function CreateIdea() {
+    const {categories} = usePage().props
+
     const {data, setData, post, recentlySuccessful, reset, errors} = useForm({
         title: '',
-        category: 'category',
+        category_id: '1',
         description: ''
     })
 
@@ -35,11 +37,17 @@ function CreateIdea(props) {
                     <select
                         placeholder={"Category"}
                         className={"w-full mt-4 bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
-                        name="category"
+                        name="category_id"
                         defaultValue={"Category"}
-                        id="">
+                        value={data.category_id}
+                        onChange={e => setData('category_id', e.target.value)}
+                    >
 
-                        <option value="Category" disabled={true}>Category</option>
+                        <option disabled={true}>Select a Category</option>
+
+                        {categories.map(category =>
+                            <option key={category.id} value={category.id}>{category.name}</option>
+                        )}
                     </select>
 
                     <textarea
