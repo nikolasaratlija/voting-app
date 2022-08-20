@@ -38,7 +38,6 @@ function CreateIdea() {
                         placeholder={"Category"}
                         className={"w-full mt-4 bg-gray-100 font-semibold rounded-xl border-none placeholder-gray-900"}
                         name="category_id"
-                        defaultValue={"Category"}
                         value={data.category_id}
                         onChange={e => setData('category_id', e.target.value)}
                     >
