@@ -17,17 +17,21 @@ export default function IdeaCard(props) {
                     <span className={"block text-2xl font-bold"}>{props.votes_count}</span>
                     <span className={"block text-gray-400"}>Votes</span>
                 </div>
-                <button className={"uppercase font-bold text-white bg-blue-500 rounded-xl w-20 h-12 text-xs"}>Vote</button>
+                <button className={"uppercase font-bold text-white bg-blue-500 rounded-xl w-20 h-12 text-xs"}>Vote
+                </button>
             </div>
 
-            <div>
-                <div className={"bg-gray-400 h-16 w-16 rounded-xl"}></div>
-            </div>
+            <img
+                className={"rounded-xl h-16 w-16"}
+                src={`https://i.pravatar.cc/150?u=${Math.floor(Math.random() * 100)}`}
+                alt="avatar"
+            />
 
             <div className={"flex w-full flex-col justify-between"}>
                 <div>
                     <h3>
-                        <Link href={route('ideas.show', props.slug)} className={"font-semibold underline text-xl"}>{props.title}</Link>
+                        <Link href={route('ideas.show', props.slug)}
+                              className={"font-semibold underline text-xl"}>{props.title}</Link>
                     </h3>
                     <p className={"mt-3"}>{props.description}</p>
                 </div>
@@ -49,8 +53,10 @@ export default function IdeaCard(props) {
                         </button>
 
                         <button className={"uppercase font-bold text-xs bg-gray-200 h-8 w-16 rounded-xl"}>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 m-auto" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 m-auto" viewBox="0 0 20 20"
+                                 fill="currentColor">
+                                <path
+                                    d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"/>
                             </svg>
                         </button>
                     </div>
