@@ -18,7 +18,7 @@ class StatusSeeder extends Seeder
     {
         DB::table('statuses')->insert(['name' => 'open']);
         DB::table('statuses')->insert(['name' => 'considering']);
-        DB::table('statuses')->insert(['name' => 'in progress']);
+        DB::table('statuses')->insert(['name' => 'in_progress']);
         DB::table('statuses')->insert(['name' => 'implemented']);
         DB::table('statuses')->insert(['name' => 'closed']);
     }
