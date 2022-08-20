@@ -16,9 +16,15 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [IdeaController::class, 'index'])->name('ideas.index');
-Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('ideas.show');
-Route::post('/ideas', [IdeaController::class, 'store'])->name('ideas.store');
+Route::get('/', [IdeaController::class, 'index'])
+    ->name('ideas.index');
+
+Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])
+    ->name('ideas.show');
+
+Route::post('/ideas', [IdeaController::class, 'store'])
+    ->name('ideas.store')
+    ->middleware('auth');
 
 Route::get('/info', function () {
     return Inertia::render('Laravel/Welcome', [
@@ -33,4 +39,4 @@ Route::get('/dashboard', function () {
     return Inertia::render('Laravel/Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

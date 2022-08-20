@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Idea;
 use App\Models\User;
 use Database\Seeders\StatusSeeder;
+use Database\Seeders\UserSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -17,7 +18,7 @@ class IdeaTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->seed(StatusSeeder::class);
+        $this->seed([UserSeeder::class, StatusSeeder::class]);
     }
 
     public function test_index_ok()
@@ -63,5 +64,21 @@ class IdeaTest extends TestCase
         $this->post(route('ideas.store', $attributes));
 
         $this->assertDatabaseHas('ideas', $attributes);
+    }
+
+    public function test_guest_cannot_create_idea()
+    {
+        $category = Category::factory()->create();
+
+        $attributes = [
+            'title' => fake()->sentence,
+            'description' => fake()->sentence,
+            'category_id' => $category->id
+        ];
+
+        $this->post(route('ideas.store', $attributes))
+            ->assertRedirect('/login');
+
+        $this->assertDatabaseMissing('ideas', $attributes);
     }
 }

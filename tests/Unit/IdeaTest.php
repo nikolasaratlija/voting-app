@@ -8,6 +8,7 @@ use App\Models\Status;
 use App\Models\User;
 use App\Models\Vote;
 use Database\Seeders\StatusSeeder;
+use Database\Seeders\UserSeeder;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -19,7 +20,7 @@ class IdeaTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->seed(StatusSeeder::class);
+        $this->seed([UserSeeder::class, StatusSeeder::class]);
     }
 
     public function test_idea_belongs_to_user()
