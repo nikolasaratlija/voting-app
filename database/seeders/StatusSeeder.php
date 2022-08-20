@@ -16,10 +16,10 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('statuses')->insert(['name' => 'open']);
-        DB::table('statuses')->insert(['name' => 'considering']);
-        DB::table('statuses')->insert(['name' => 'in_progress']);
-        DB::table('statuses')->insert(['name' => 'implemented']);
-        DB::table('statuses')->insert(['name' => 'closed']);
+        Status::factory(['name' => 'open'])->create();
+        Status::factory(['name' => 'considering'])->create();
+        Status::factory(['name' => 'in_progress'])->create();
+        Status::factory(['name' => 'implemented'])->create();
+        Status::factory(['name' => 'closed'])->create();
     }
 }

@@ -20,7 +20,7 @@ class IdeaFactory extends Factory
     public function definition()
     {
         return [
-            'category_id' => Category::factory(),
+            'category_id' => Category::all()->random()->id,
             'user_id' => User::all()->random()->id,
             'status_id' => Status::all()->random()->id,
             'title' => fake()->sentence,
