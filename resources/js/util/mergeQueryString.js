@@ -1,11 +1,16 @@
+// appends a new object to the query string
 export function mergeQueryString(key, value) {
-    let entries = new URLSearchParams(window.location.search).entries()
+    const entries = new URLSearchParams(window.location.search).entries() // gets query string from URL
 
-    const result = {}
+    // creates an object from the current query string
+    const queryStringObject = {}
     for (const [key, value] of entries)
-        result[key] = value
+        queryStringObject[key] = value
 
-    result[key] = value
+    if (key in queryStringObject && !value)
+        delete queryStringObject[key] // deletes key if value the is empty
+    else
+        queryStringObject[key] = value // append value to object
 
-    return result
+    return queryStringObject
 }
