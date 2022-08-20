@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreVoteRequest;
 use App\Http\Requests\UpdateVoteRequest;
+use App\Models\Idea;
 use App\Models\Vote;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller
 {
@@ -32,11 +35,18 @@ class VoteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreVoteRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreVoteRequest $request)
+    public function store(Idea $idea)
     {
-        //
+        $user = Auth::user();
+
+        if ($idea->isVotedByUser($user))
+            $idea->removeVote($user);
+        else
+            $idea->addVote($user);
+
+        return redirect()->route('ideas.index');
     }
 
     /**

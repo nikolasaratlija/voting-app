@@ -63,10 +63,6 @@ class Idea extends Model
 
     public function addVote(User $user)
     {
-        // cannot vote for idea unless idea is open
-        if ($this->status_id !== 1)
-            return;
-
         Vote::create([
             'user_id' => $user->id,
             'idea_id' => $this->id
@@ -78,5 +74,10 @@ class Idea extends Model
         Vote::where('user_id', $user->id)
             ->where('idea_id', $this->id)
             ->delete();
+    }
+
+    public function path()
+    {
+
     }
 }

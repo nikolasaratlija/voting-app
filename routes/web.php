@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\VoteController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,6 +25,10 @@ Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])
 
 Route::post('/ideas', [IdeaController::class, 'store'])
     ->name('ideas.store')
+    ->middleware('auth');
+
+Route::post('/ideas/{idea:slug}/votes', [VoteController::class, 'store'])
+    ->name('ideas.votes.store')
     ->middleware('auth');
 
 Route::get('/info', function () {

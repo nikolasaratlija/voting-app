@@ -17,13 +17,21 @@ export default function IdeaCard(props) {
                     <span className={"block text-2xl font-bold"}>{props.votes_count}</span>
                     <span className={"block text-gray-400"}>Votes</span>
                 </div>
-                <button className={"uppercase font-bold text-white bg-blue-500 rounded-xl w-20 h-12 text-xs"}>Vote
-                </button>
+
+                <Link
+                    as={"button"}
+                    method={"post"}
+                    preserveScroll
+                    href={route('ideas.votes.store', props.slug)}
+                    className={`uppercase font-bold text-white rounded-xl w-20 h-12 text-xs ${props.voted_by_user ? 'bg-blue-800' : 'bg-blue-500'}`}
+                >
+                    {props.voted_by_user ? 'Voted' : 'Vote'}
+                </Link>
             </div>
 
             <img
                 className={"rounded-xl h-16 w-16"}
-                src={`https://i.pravatar.cc/150?u=${Math.floor(Math.random() * 100)}`}
+                src={`https://i.pravatar.cc/150?u=${props.slug.substring(0, 2)}`}
                 alt="avatar"
             />
 

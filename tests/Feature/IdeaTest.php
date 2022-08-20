@@ -69,6 +69,13 @@ class IdeaTest extends TestCase
 
         $this->assertDatabaseHas('ideas', $attributes);
     }
+
+    public function test_authenticated_user_can_vote_for_idea()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $idea = Idea::factory()->create();
+    }
     //</editor-fold>
 
     //<editor-fold desc="guest can/cannot ...">

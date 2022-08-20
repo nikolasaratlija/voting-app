@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -19,6 +20,7 @@ class IdeaController extends Controller
      */
     public function index()
     {
+        // TODO: Cleanup
         return Inertia::render('Ideas/Index', [
             'ideas' => Idea::latest()
                 ->when(request('search'), function ($query, $search) {
@@ -45,7 +47,8 @@ class IdeaController extends Controller
                     'slug' => $idea->slug,
                     'status' => ['name' => $idea->status->name],
                     'title' => $idea->title,
-                    'votes_count' => $idea->votes_count
+                    'votes_count' => $idea->votes_count,
+                    'voted_by_user' => Auth::check() && $idea->isVotedByUser(Auth::user())
                 ]),
             'filters' => request()->only(['search'])
         ]);
