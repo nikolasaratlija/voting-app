@@ -29,6 +29,9 @@ class IdeaController extends Controller
                         $query->where('name', '=', $search);
                     });
                 })
+                ->when(request('category_id'), function ($query, $search) {
+                    $query->where('category_id', '=', $search);
+                })
                 ->with('category', 'status')
                 ->withCount('votes')
                 ->orderBy('id')

@@ -1,17 +1,19 @@
 import React, {useState} from "react";
 import {Inertia} from "@inertiajs/inertia";
-import {usePage} from "@inertiajs/inertia-react";
+import {useForm, usePage} from "@inertiajs/inertia-react";
 import {mergeQueryString} from "@/util/mergeQueryString";
 
 export default function IdeaFilters() {
-    const {filters} = usePage().props
+    const {filters, categories} = usePage().props
 
-    const [search, setSearch] = useState(filters.search || '')
+    const {data, setData} = useForm({
+        search: filters.search || '',
+        category_id: ''
+    })
 
-    function handleChange(e) {
-        setSearch(e.target.value)
-
-        let parameters = mergeQueryString('search', e.target.value)
+    function handleChange(e, parameter) {
+        setData(parameter, e.target.value)
+        let parameters = mergeQueryString(parameter, e.target.value)
 
         Inertia.get(route('ideas.index'), parameters, {
             replace: true,
@@ -25,10 +27,14 @@ export default function IdeaFilters() {
                 placeholder={"Category"}
                 className={"w-1/4 shadow bg-white font-semibold rounded-xl border-none"}
                 name="category"
-                defaultValue={"category"}
-                id="">
+                value={data.category_id}
+                onChange={e => handleChange(e, 'category_id')}
+            >
+                <option value={""}>Filter by Category</option>
 
-                <option value={"category"} disabled={true}>Category</option>
+                {categories.map(category =>
+                    <option key={category.id} value={category.id}>{category.name}</option>
+                )}
             </select>
 
             <select
@@ -53,9 +59,9 @@ export default function IdeaFilters() {
                     type="search"
                     id="search"
                     placeholder={"Find an idea"}
-                    onChange={handleChange}
+                    onChange={e => handleChange(e, 'search')}
                     name="search"
-                    value={search}
+                    value={data.search}
                     className={"pl-10 w-full shadow bg-white font-semibold rounded-xl border-none placeholder-gray-900"}/>
             </div>
         </div>
