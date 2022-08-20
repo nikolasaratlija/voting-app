@@ -1,6 +1,6 @@
 import React from 'react';
 import AppLayout from "@/Layouts/AppLayout";
-import IdeaCard from "@/Components/IdeaCard";
+import IdeaCard from "@/Components/Index/IdeaCard";
 import {Link} from '@inertiajs/inertia-react'
 import IdeaFilters from "@/Components/Index/IdeaFilters";
 
