@@ -5,7 +5,7 @@ import IdeaCard from "@/Components/Index/IdeaCard";
 export default function Show({idea}) {
     return (
         <div className={"space-y-4"}>
-            <IdeaCard {...idea}/>
+            <IdeaCard {...idea.data}/>
         </div>
     )
 }

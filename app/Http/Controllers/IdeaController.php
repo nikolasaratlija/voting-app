@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
+use App\Http\Resources\IdeaResource;
 use App\Models\Idea;
 use App\Models\Status;
 use Illuminate\Http\Request;
@@ -20,36 +21,24 @@ class IdeaController extends Controller
      */
     public function index()
     {
-        // TODO: Cleanup
         return Inertia::render('Ideas/Index', [
-            'ideas' => Idea::latest()
-                ->when(request('search'), function ($query, $search) {
-                    $query->where('title', 'LIKE', "%{$search}%");
-                })
-                ->when(request('status'), function ($query, $search) {
-                    $query->whereHas('status', function ($query) use ($search) {
-                        $query->where('name', '=', $search);
-                    });
-                })
-                ->when(request('category_id'), function ($query, $search) {
-                    $query->where('category_id', '=', $search);
-                })
-                ->with('category', 'status')
-                ->withCount('votes')
-                ->orderBy('id')
-                ->paginate(5)
-                ->withQueryString()
-                ->through(fn($idea) => [
-                    'id' => $idea->id,
-                    'category' => ['name' => $idea->category->name],
-                    'created_at' => $idea->created_at,
-                    'description' => $idea->description,
-                    'slug' => $idea->slug,
-                    'status' => ['name' => $idea->status->name],
-                    'title' => $idea->title,
-                    'votes_count' => $idea->votes_count,
-                    'voted_by_user' => Auth::check() && $idea->isVotedByUser(Auth::user())
-                ]),
+            'ideas' => IdeaResource::collection(
+                Idea::query()
+                    ->when(request('search'), function ($query, $search) {
+                        $query->where('title', 'LIKE', "%{$search}%");
+                    })
+                    ->when(request('status'), function ($query, $search) {
+                        $query->whereHas('status', function ($query) use ($search) {
+                            $query->where('name', '=', $search);
+                        });
+                    })
+                    ->when(request('category_id'), function ($query, $search) {
+                        $query->where('category_id', '=', $search);
+                    })
+                    ->latest()
+                    ->paginate(5)
+                    ->withQueryString()
+            ),
             'filters' => request()->only(['search'])
         ]);
     }
@@ -63,7 +52,7 @@ class IdeaController extends Controller
     public function show(Idea $idea)
     {
         return Inertia::render('Ideas/Show', [
-            'idea' => $idea->load('status', 'category')->loadCount('votes')
+            'idea' => new IdeaResource($idea)
         ]);
     }
 

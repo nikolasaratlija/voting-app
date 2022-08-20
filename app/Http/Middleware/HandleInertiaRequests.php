@@ -47,7 +47,7 @@ class HandleInertiaRequests extends Middleware
                 ]);
             },
             'status_count' => Status::getCount(),
-            'categories' => Category::select('name', 'id')->get()
+            'categories' => Category::select(['name', 'id'])->get()
         ]);
     }
 }

@@ -15,6 +15,11 @@ class Idea extends Model
 
     protected $guarded = [];
 
+    protected $with = ['status', 'category', 'votes'];
+
+    protected $appends = ['votes_count'];
+
+    //<editor-fold desc="relations">
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -29,6 +34,12 @@ class Idea extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+    //</editor-fold>
 
     /**
      * returns created_at attribute in human readable format
@@ -49,9 +60,9 @@ class Idea extends Model
             ->saveSlugsTo('slug');
     }
 
-    public function votes()
+    public function getVotesCountAttribute()
     {
-        return $this->hasMany(Vote::class);
+        return $this->votes->count();
     }
 
     public function isVotedByUser(User $user)
@@ -74,10 +85,5 @@ class Idea extends Model
         Vote::where('user_id', $user->id)
             ->where('idea_id', $this->id)
             ->delete();
-    }
-
-    public function path()
-    {
-
     }
 }

@@ -16,7 +16,7 @@ export default function Index({ideas}) {
 
             {/* pagination */}
             <div className={"mt-6 flex items-center space-x-4 justify-center text-lg"}>
-                {ideas.links.map((link, index) => {
+                {ideas.meta.links.map((link, index) => {
                     const classNames = [
                         link.active ? 'font-bold' : '',
                         !link.url ? 'text-gray-400 cursor-default' : '']
